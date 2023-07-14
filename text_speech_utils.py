@@ -1,8 +1,11 @@
 import openai
 import sounddevice as sd
-import audiofile as af
 from scipy.io.wavfile import write
 from gtts import gTTS
+from elevenlabs import generate, set_api_key, save
+from elevenlabs.api import History
+
+set_api_key("06dadcb30178b8ad0e19f25598461771")
 
 import multiprocessing
 import pyttsx3
@@ -48,8 +51,17 @@ def translate_audio(filename):
     return translation
 
 def save_text_as_audio(text, audio_filename):
-    myobj = gTTS(text=text, lang='en', slow=False)  
-    myobj.save(audio_filename)
+    print("SAVE TEXT AS AUDIO")
+    print(text)
+    audio = generate(
+    text=text,
+    voice="KIM23JcEVYJOlBQVOuBR",
+    model='eleven_monolingual_v1'
+)
+    save(audio,audio_filename)
+
+    #myobj = gTTS(text=text, lang='en', slow=False)  
+   # myobj.save(audio_filename)
 
 
 

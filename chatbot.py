@@ -15,7 +15,7 @@ def main():
         messages.append({"role": "user", "content": transcription['text']})
         print(f"\n- Me: {transcription['text']}")
 
-        bot = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+        bot = openai.ChatCompletion.create(model="gpt-4", messages=messages)
         
         response = bot.choices[0].message.content
         print(f"- ChatGPT: {response}")
